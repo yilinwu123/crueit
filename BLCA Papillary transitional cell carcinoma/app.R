@@ -1,5 +1,4 @@
 
-
 library(shiny)
 library(plotly)
 library(DT)
@@ -14,7 +13,7 @@ library(survival)
 library(shinydashboard)
 
 select=read.csv("data/subtype_select.csv")
-    k=2
+      k=2
   m=select$cancer[k]
   n=select$subtype[k]
   
@@ -59,7 +58,7 @@ select=read.csv("data/subtype_select.csv")
   }
   
   geneidfinal=colnames(datapre)
-  print(dim(datapre))
+  #print(dim(datapre))
   #data.train=cbind(data.train.raw$submitter_id,x.train,data.train.raw[,1883:ncol(data.train.raw)])
   datausefinal=cbind(datause$os_time,datause$os_status,datapre)
   colnames(datausefinal)[1]='os_time'
@@ -129,7 +128,7 @@ select=read.csv("data/subtype_select.csv")
       geneid=dataplot$gene[index]
       datausefinal$label1=cut(datausefinal[,geneid],breaks=c(min(datausefinal[,geneid]),quantile(datausefinal[,geneid],0.25),quantile(datausefinal[,geneid],0.5),quantile(datausefinal[,geneid],0.75),max(datausefinal[,geneid])),
                               include.lowest = T,right = F,label=c(0,1,2,3))
-      fit<-survfit(Surv(datausefinal$os_time,datausefinal$os_status)~datausefinal$label1,data=datausefinal)
+      fit<-do.call(survfit,list(Surv(datausefinal$os_time,datausefinal$os_status)~datausefinal$label1,data=datausefinal))
       #plot_ly(datausefinal,x=~os_time,y=~os_status)
       #ggplot(data=datausefinal,aes(x=os_time,y=os_status))+geom_point()
       p<-ggsurvplot(fit,data=datausefinal, risk.table = TRUE, risk.table.y.text.col = TRUE)+labs(title=geneid)
@@ -160,4 +159,6 @@ select=read.csv("data/subtype_select.csv")
   }
   
   shinyApp(ui, server)
+  
+
   

@@ -20,7 +20,7 @@ select=read.csv("data/subtype_select.csv")
   
   
   
-  data1=read.csv(paste( "GDCdata_miRNA-1/",m,"_", n, ".csv",sep=""))
+  data1=read.csv(paste( "data/GDCdata_miRNA-1/",m,"_", n, ".csv",sep=""))
   data1<-data1[order(data1$BatchId),]
   
   data1<-data1[,-1]

@@ -129,7 +129,7 @@ select=read.csv("data/subtype_select.csv")
       geneid=dataplot$gene[index]
       datausefinal$label1=cut(datausefinal[,geneid],breaks=c(min(datausefinal[,geneid]),quantile(datausefinal[,geneid],0.25),quantile(datausefinal[,geneid],0.5),quantile(datausefinal[,geneid],0.75),max(datausefinal[,geneid])),
                               include.lowest = T,right = F,label=c(0,1,2,3))
-      fit<-survfit(Surv(datausefinal$os_time,datausefinal$os_status)~datausefinal$label1,data=datausefinal)
+      fit<-do.call(survfit,list(Surv(datausefinal$os_time,datausefinal$os_status)~datausefinal$label1,data=datausefinal))
       #plot_ly(datausefinal,x=~os_time,y=~os_status)
       #ggplot(data=datausefinal,aes(x=os_time,y=os_status))+geom_point()
       p<-ggsurvplot(fit,data=datausefinal, risk.table = TRUE, risk.table.y.text.col = TRUE)+labs(title=geneid)

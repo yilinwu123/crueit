@@ -14,7 +14,7 @@ library(survival)
 library(shinydashboard)
 
 select=read.csv("data/subtype_select.csv")
-      k=3
+      k=4
   m=select$cancer[k]
   n=select$subtype[k]
   

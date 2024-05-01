@@ -14,7 +14,7 @@ library(survival)
 library(shinydashboard)
 
 select=read.csv("data/subtype_select.csv")
-  k=3
+      k=3
   m=select$cancer[k]
   n=select$subtype[k]
   
@@ -59,7 +59,7 @@ select=read.csv("data/subtype_select.csv")
   }
   
   geneidfinal=colnames(datapre)
-  
+  print(dim(datapre))
   #data.train=cbind(data.train.raw$submitter_id,x.train,data.train.raw[,1883:ncol(data.train.raw)])
   datausefinal=cbind(datause$os_time,datause$os_status,datapre)
   colnames(datausefinal)[1]='os_time'
@@ -69,7 +69,7 @@ select=read.csv("data/subtype_select.csv")
   
   
   #dataplot=read.csv(paste('/users/yilin/Downloads/cureitsurvival-2/cure',m,n,'.csv'))
-  dataplot=read.csv(paste('data/cure',m,n,'.csv'))
+  dataplot=read.csv(paste('/users/yilin/Downloads/cureitsurvival/cure',m,n,'.csv'))
   dataplot$color[dataplot$scoretest<0.01]=1
   dataplot$color[dataplot$scoretest>=0.01]=0
   dataplot$color=as.factor(dataplot$color)

@@ -68,7 +68,8 @@ select=read.csv("data/subtype_select.csv")
   
   
   #dataplot=read.csv(paste('/users/yilin/Downloads/cureitsurvival-2/cure',m,n,'.csv'))
-  dataplot=read.csv(paste('/users/yilin/Downloads/cureitsurvival/cure',m,n,'.csv'))
+  #dataplot=read.csv(paste('/users/yilin/Downloads/cureitsurvival/cure',m,n,'.csv'))
+  dataplot=read.csv(paste('data/cure',m,n,'.csv'))
   dataplot$color[dataplot$scoretest<0.01]=1
   dataplot$color[dataplot$scoretest>=0.01]=0
   dataplot$color=as.factor(dataplot$color)
